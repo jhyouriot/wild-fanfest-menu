@@ -24,9 +24,14 @@
       font-family:Pretendard, "Noto Sans KR", Arial, sans-serif;
       color:var(--text);
       background:
+        linear-gradient(rgba(249,252,233,.86), rgba(243,248,221,.88)),
+        url("images/background.jpg"),
         radial-gradient(circle at 10% 5%, rgba(200,233,119,.35), transparent 28%),
         radial-gradient(circle at 90% 10%, rgba(137,205,186,.23), transparent 25%),
         linear-gradient(180deg,#f9fce9 0%, var(--bg) 100%);
+      background-size:cover;
+      background-position:center;
+      background-attachment:fixed;
       min-height:100vh;
     }
 
@@ -609,73 +614,6 @@
       }
     }
 
-  
-    /* 첨부한 상품 배치 순서 */
-    .catalog{
-      display:block;
-    }
-
-    .catalog-section{
-      margin-bottom:34px;
-    }
-
-    .section-title{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width:180px;
-      min-height:40px;
-      margin:0 0 14px;
-      padding:6px 20px;
-      border:2px solid rgba(44,68,65,.68);
-      border-radius:4px;
-      background:rgba(255,255,255,.9);
-      color:#203c3e;
-      font-size:clamp(20px,2.4vw,30px);
-      font-weight:950;
-      letter-spacing:-.04em;
-    }
-
-    .section-grid{
-      display:grid;
-      grid-template-columns:repeat(4,minmax(0,1fr));
-      gap:18px;
-    }
-
-    @media (min-width:900px) and (max-width:1400px){
-      .section-grid{
-        grid-template-columns:repeat(4,minmax(0,1fr));
-        gap:14px;
-      }
-    }
-
-    @media (min-width:600px) and (max-width:899px){
-      .section-grid{
-        grid-template-columns:repeat(3,minmax(0,1fr));
-        gap:12px;
-      }
-    }
-
-    @media (max-width:599px){
-      .catalog-section{margin-bottom:26px}
-      .section-title{
-        min-width:150px;
-        min-height:36px;
-        padding:5px 15px;
-        font-size:19px;
-      }
-      .section-grid{
-        grid-template-columns:repeat(2,minmax(0,1fr));
-        gap:10px;
-      }
-    }
-
-    @media (max-width:390px){
-      .section-grid{
-        grid-template-columns:1fr;
-      }
-    }
-
   </style>
 </head>
 <body>
@@ -690,7 +628,7 @@
       <div class="title-area">
         <p class="eyebrow">라이엇 게임즈와 현대백화점이 함께하는</p>
         <h1 class="title">WILD FANFEST</h1>
-        <p class="subtitle">RIOT STORE CATALOG</p>
+        <p class="subtitle">2026. 08. 07 — 08. 17 · RIOT STORE CATALOG</p>
       </div>
 
       <div class="tools">
@@ -750,7 +688,7 @@
         nameKo: "아케인 징크스 피규어",
         nameEn: "Arcane Jinx Figure",
         price: "45,000원",
-        image: "./images/products/0001.jpg",
+        image: "images/products/0032.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -759,7 +697,7 @@
         nameKo: "웰시 코르키 피규어 (시리즈 4, 한정판)",
         nameEn: "Corgi Corki Figure Limited Edition (Series 4)",
         price: "42,000원",
-        image: "./images/products/0002.jpg",
+        image: "images/products/0033.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -768,7 +706,7 @@
         nameKo: "포로 뭉치 피규어",
         nameEn: "Fluft Poros Stack Figures",
         price: "42,000원",
-        image: "./images/products/0003.jpg",
+        image: "images/products/0028.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -777,7 +715,7 @@
         nameKo: "요네 피규어 (시리즈 4)",
         nameEn: "Yone Figure",
         price: "38,000원",
-        image: makePlaceholder(4, "Yone Figure"),
+        image: "images/products/0030.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -786,7 +724,7 @@
         nameKo: "자야와 라칸 듀오 피규어",
         nameEn: "Xayah and Rakan Duo Figure",
         price: "59,000원",
-        image: makePlaceholder(5, "Xayah and Rakan Duo Figure"),
+        image: "images/products/0031.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -795,7 +733,7 @@
         nameKo: "사랑의 추적자 유미 피규어(크로마 루비 에디션)",
         nameEn: "Heartseeker Yuumi Figure (Chroma Edition - Ruby)",
         price: "42,000원",
-        image: makePlaceholder(6, "Heartseeker Yuumi Figure (Chroma Edition - Ruby)"),
+        image: "images/products/0029.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -804,7 +742,7 @@
         nameKo: "귀염둥이 카페 그웬 피규어 크로마 (한정판)",
         nameEn: "Cafe Cutie Gwen Figure (Chroma Edition)",
         price: "42,000원",
-        image: makePlaceholder(7, "Cafe Cutie Gwen Figure (Chroma Edition)"),
+        image: "images/products/0034.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -813,7 +751,7 @@
         nameKo: "TFT 미니 전설이 피규어",
         nameEn: "TFT Little Legends Blind Box Series 1 (Single Box)",
         price: "18,000원",
-        image: makePlaceholder(8, "TFT Little Legends Blind Box Series 1 (Single Box)"),
+        image: "images/products/0007.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -822,7 +760,7 @@
         nameKo: "리그 오브 레전드 큐티 아이콘 시리즈 (팝마트)",
         nameEn: "League of Legends Cutie Icons Series Figures",
         price: "16,000원",
-        image: makePlaceholder(9, "League of Legends Cutie Icons Series Figures"),
+        image: "images/products/0008.jpg",
         badge: "신상품",
         description: "신상품"
       },
@@ -831,7 +769,7 @@
         nameKo: "리그 오브 레전드 미드라인 대결 시리즈 (팝마트)",
         nameEn: "League of Legends Midlane Icons Series Figures",
         price: "17,000원",
-        image: makePlaceholder(10, "League of Legends Midlane Icons Series Figures"),
+        image: "images/products/0027.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -840,7 +778,7 @@
         nameKo: "수영장 파티 케이틀린 1/8 스태츄",
         nameEn: "Pool Party Caitlyn 1/8th Scale Figure",
         price: "82,000원",
-        image: makePlaceholder(11, "Pool Party Caitlyn 1/8th Scale Figure"),
+        image: "images/products/0037.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -849,7 +787,7 @@
         nameKo: "영혼의 꽃 요네 1/8 스태츄",
         nameEn: "Spirit Blossom Yone 1/8 Scale Statue",
         price: "70,000원",
-        image: makePlaceholder(12, "Spirit Blossom Yone 1/8 Scale Statue"),
+        image: "images/products/0035.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -858,7 +796,7 @@
         nameKo: "영혼의 꽃 신드라 1/8 스태츄",
         nameEn: "Spirit Blossom Syndra 1/8 Scale Statue",
         price: "70,000원",
-        image: makePlaceholder(13, "Spirit Blossom Syndra 1/8 Scale Statue"),
+        image: "images/products/0036.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -867,7 +805,7 @@
         nameKo: "징크스 UNLOCKED 스태츄",
         nameEn: "Jinx UNLOCKED Statue",
         price: "99,000원",
-        image: makePlaceholder(14, "Jinx UNLOCKED Statue"),
+        image: "images/products/0038.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -876,7 +814,7 @@
         nameKo: "아리 Unlocked 스태츄",
         nameEn: "Ahri Unlocked Statue",
         price: "99,000원",
-        image: makePlaceholder(15, "Ahri Unlocked Statue"),
+        image: "images/products/0039.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -885,7 +823,7 @@
         nameKo: "이즈리얼 Unlocked 스태츄",
         nameEn: "Ezreal Unlocked Statue",
         price: "99,000원",
-        image: makePlaceholder(16, "Ezreal Unlocked Statue"),
+        image: "images/products/0041.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -894,7 +832,7 @@
         nameKo: "세라핀 Unlocked 스태츄",
         nameEn: "Seraphine Unlocked Statue",
         price: "99,000원",
-        image: makePlaceholder(17, "Seraphine Unlocked Statue"),
+        image: "images/products/0040.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -903,7 +841,7 @@
         nameKo: "날쌘 정찰병, 티모 1/4 스태츄 (Pure Arts)",
         nameEn: "Pure Arts Teemo 1/4 Scale Statue",
         price: "650,000원",
-        image: makePlaceholder(18, "Pure Arts Teemo 1/4 Scale Statue"),
+        image: "images/products/0047.jpg",
         badge: "프리미엄",
         description: "프리미엄 표기 필요"
       },
@@ -912,7 +850,7 @@
         nameKo: "원소술사 럭스 1/7 스태츄 (Good Smile Company)",
         nameEn: "Good Smile Elementalist Lux 1/7 Scale Figure",
         price: "320,000원",
-        image: makePlaceholder(19, "Good Smile Elementalist Lux 1/7 Scale Figure"),
+        image: "images/products/0048.jpg",
         badge: "프리미엄",
         description: "프리미엄 표기 필요"
       },
@@ -921,7 +859,7 @@
         nameKo: "가시 덩굴의 복수, 자이라 1/4 스태츄 (Infinity Studio)",
         nameEn: "Rise of the Thorns, Zyra 1/4 Statue (Infinity Studio)",
         price: "1,100,000원",
-        image: makePlaceholder(20, "Rise of the Thorns, Zyra 1/4 Statue (Infinity Studio)"),
+        image: "images/products/0045.jpg",
         badge: "프리미엄",
         description: "프리미엄 표기 필요"
       },
@@ -930,7 +868,7 @@
         nameKo: "도자기 럭스 1/4 스태츄 (Beast Kingdom)",
         nameEn: "Porcelain Lux (Beast Kingdom)",
         price: "490,000원",
-        image: makePlaceholder(21, "Porcelain Lux (Beast Kingdom)"),
+        image: "images/products/0049.jpg",
         badge: "프리미엄",
         description: "프리미엄 표기 필요"
       },
@@ -939,7 +877,7 @@
         nameKo: "서리 궁수 애쉬 1/6 스태츄  (Jimei Palace)",
         nameEn: "Ashe 1/6 Scale Statue (Jimei Palace)",
         price: "480,000원",
-        image: makePlaceholder(22, "Ashe 1/6 Scale Statue (Jimei Palace)"),
+        image: "images/products/0050.jpg",
         badge: "프리미엄",
         description: "프리미엄 표기 필요"
       },
@@ -948,7 +886,7 @@
         nameKo: "별 수호자 아리 1/7 스태츄 (Good Smile Company)",
         nameEn: "Star Guardian Ahri (Good Smile Company)",
         price: "290,000원",
-        image: makePlaceholder(23, "Star Guardian Ahri (Good Smile Company)"),
+        image: "images/products/0053.jpg",
         badge: "프리미엄",
         description: "프리미엄 표기 필요"
       },
@@ -957,7 +895,7 @@
         nameKo: "카이사 이케시아 폭우 1/6 스태츄 (APEX)",
         nameEn: "APEX KaiSa 1/6 Scale Statue",
         price: "260,000원",
-        image: makePlaceholder(24, "APEX KaiSa 1/6 Scale Statue"),
+        image: "images/products/0054.jpg",
         badge: "프리미엄",
         description: "프리미엄 표기 필요"
       },
@@ -966,7 +904,7 @@
         nameKo: "사막의 도살자 레넥톤 1/4 스태츄 (Infinity Studios)",
         nameEn: "Infinity Studio: Renekton 1:4 Resin Statue",
         price: "1,790,000원",
-        image: makePlaceholder(25, "Infinity Studio: Renekton 1:4 Resin Statue"),
+        image: "images/products/0042.jpg",
         badge: "프리미엄",
         description: "프리미엄 표기 필요"
       },
@@ -975,7 +913,7 @@
         nameKo: "시간을 달리는 소년, 에코 1/4 스태츄 (Pure Arts)",
         nameEn: "Pure Arts Ekko 1/4 Statue",
         price: "1,100,000원",
-        image: makePlaceholder(26, "Pure Arts Ekko 1/4 Statue"),
+        image: "images/products/0046.jpg",
         badge: "프리미엄",
         description: "프리미엄 표기 필요"
       },
@@ -984,7 +922,7 @@
         nameKo: "캡틴 미스 포츈 1/4 스태츄",
         nameEn: "Infinity Studio Captain Fortune 1/4 Scale Statue",
         price: "1,580,000원",
-        image: makePlaceholder(27, "Infinity Studio Captain Fortune 1/4 Scale Statue"),
+        image: "images/products/0043.jpg",
         badge: "프리미엄",
         description: "프리미엄 표기 필요"
       },
@@ -993,7 +931,7 @@
         nameKo: "징크스 라이트업 1/6 스태츄 (Pure Arts)",
         nameEn: "Pure Arts: Jinx 1/6 Diorama",
         price: "399,000원",
-        image: makePlaceholder(28, "Pure Arts: Jinx 1/6 Diorama"),
+        image: "images/products/0051.jpg",
         badge: "프리미엄",
         description: "프리미엄 표기 필요"
       },
@@ -1002,7 +940,7 @@
         nameKo: "바이 라이트업 1/6 스태츄 (Pure Arts)",
         nameEn: "Pure Arts: Vi 1/6 Diorama",
         price: "399,000원",
-        image: makePlaceholder(29, "Pure Arts: Vi 1/6 Diorama"),
+        image: "images/products/0052.jpg",
         badge: "프리미엄",
         description: "프리미엄 표기 필요"
       },
@@ -1011,7 +949,7 @@
         nameKo: "노래하는 별, 세라핀 1/4 스태츄 (Infinity Studios)",
         nameEn: "Infinity Studio: 1/4 Starry-Eyed Songstress - Seraphine Statue",
         price: "1,170,000원",
-        image: makePlaceholder(30, "Infinity Studio: 1/4 Starry-Eyed Songstress - Seraphine Statue"),
+        image: "images/products/0044.jpg",
         badge: "프리미엄",
         description: "프리미엄 표기 필요"
       },
@@ -1020,7 +958,7 @@
         nameKo: "TFT 꽥꽥이 인형",
         nameEn: "TFT Duckbill Collectible Plush",
         price: "39,000원",
-        image: makePlaceholder(31, "TFT Duckbill Collectible Plush"),
+        image: "images/products/0067.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1029,7 +967,7 @@
         nameKo: "TFT 배불뚝이 인형",
         nameEn: "Choncc Plush",
         price: "38,000원",
-        image: makePlaceholder(32, "Choncc Plush"),
+        image: "images/products/0061.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1038,7 +976,7 @@
         nameKo: "티모 인형",
         nameEn: "Teemo Collectible Plush",
         price: "38,000원",
-        image: makePlaceholder(33, "Teemo Collectible Plush"),
+        image: "images/products/0072.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1047,7 +985,7 @@
         nameKo: "직스 인형",
         nameEn: "Ziggs Collectible Plush",
         price: "38,000원",
-        image: makePlaceholder(34, "Ziggs Collectible Plush"),
+        image: "images/products/0073.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1056,7 +994,7 @@
         nameKo: "베이가 인형",
         nameEn: "Veigar Collectible Plush",
         price: "38,000원",
-        image: makePlaceholder(35, "Veigar Collectible Plush"),
+        image: "images/products/0074.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1065,7 +1003,7 @@
         nameKo: "TFT 깡충이 인형",
         nameEn: "TFT Bunbun Plush",
         price: "38,000원",
-        image: makePlaceholder(36, "TFT Bunbun Plush"),
+        image: "images/products/0070.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1074,7 +1012,7 @@
         nameKo: "TFT 수염냥 인형",
         nameEn: "TFT Whisker Plush",
         price: "38,000원",
-        image: makePlaceholder(37, "TFT Whisker Plush"),
+        image: "images/products/0069.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1083,7 +1021,7 @@
         nameKo: "TFT 뽀글이 인형",
         nameEn: "TFT Poggles Plush",
         price: "38,000원",
-        image: makePlaceholder(38, "TFT Poggles Plush"),
+        image: "images/products/0068.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1092,7 +1030,7 @@
         nameKo: "TFT 파워 코드 아오 신 인형",
         nameEn: "Ao Shin Plush",
         price: "42,000원",
-        image: makePlaceholder(39, "Ao Shin Plush"),
+        image: "images/products/0071.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1101,7 +1039,7 @@
         nameKo: "TFT 뒤집개 인형",
         nameEn: "Golden Spatula Plush",
         price: "32,000원",
-        image: makePlaceholder(40, "Golden Spatula Plush"),
+        image: "images/products/0059.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1110,7 +1048,7 @@
         nameKo: "영혼의 꽃 펭구 깃털기사 인형",
         nameEn: "Spirit Blossom Featherknight Plush",
         price: "38,000원",
-        image: makePlaceholder(41, "Spirit Blossom Featherknight Plush"),
+        image: "images/products/0063.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1119,7 +1057,7 @@
         nameKo: "TFT 펭구 깃털기사 뒤집개 인형",
         nameEn: "Featherknight with Golden Spatula Plush",
         price: "38,000원",
-        image: makePlaceholder(42, "Featherknight with Golden Spatula Plush"),
+        image: "images/products/0066.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1128,7 +1066,7 @@
         nameKo: "TFT 트리스타나 코스프레 펭구 깃털기사 인형",
         nameEn: "Tristana Featherknight Plush",
         price: "38,000원",
-        image: makePlaceholder(43, "Tristana Featherknight Plush"),
+        image: "images/products/0065.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1137,7 +1075,7 @@
         nameKo: "TFT 몰락한 펭구 깃털기사 인형",
         nameEn: "Ruined King Featherknight Plush",
         price: "38,000원",
-        image: makePlaceholder(44, "Ruined King Featherknight Plush"),
+        image: "images/products/0064.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1146,7 +1084,7 @@
         nameKo: "TFT URF 퐁당이 인형",
         nameEn: "TFT URF Dowsie",
         price: "38,000원",
-        image: makePlaceholder(45, "TFT URF Dowsie"),
+        image: "images/products/0062.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1155,7 +1093,7 @@
         nameKo: "뽀삐 인형",
         nameEn: "Poppy Plush",
         price: "38,000원",
-        image: makePlaceholder(46, "Poppy Plush"),
+        image: "images/products/0077.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1164,7 +1102,7 @@
         nameKo: "웰시 코르키 인형",
         nameEn: "Corgi Corki Plush",
         price: "45,000원",
-        image: makePlaceholder(47, "Corgi Corki Plush"),
+        image: "images/products/0078.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1173,7 +1111,7 @@
         nameKo: "TFT 뒤집개 마사지 인형 (TBD)",
         nameEn: "Golden Spatula Massage Stick Plush",
         price: "35,000원",
-        image: makePlaceholder(48, "Golden Spatula Massage Stick Plush"),
+        image: "images/products/0060.jpg",
         badge: "신상품",
         description: "신상품"
       },
@@ -1182,7 +1120,7 @@
         nameKo: "티모 모자",
         nameEn: "Teemo Hat",
         price: "29,000원",
-        image: makePlaceholder(49, "Teemo Hat"),
+        image: "images/products/0009.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1191,7 +1129,7 @@
         nameKo: "포로 모자",
         nameEn: "Poro Plush Hat",
         price: "32,000원",
-        image: makePlaceholder(50, "Poro Plush Hat"),
+        image: "images/products/0016.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1200,7 +1138,7 @@
         nameKo: "나르 모자",
         nameEn: "Gnar Plush Hat",
         price: "45,000원",
-        image: makePlaceholder(51, "Gnar Plush Hat"),
+        image: "images/products/0017.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1209,7 +1147,7 @@
         nameKo: "블리츠크랭크 모자와 팔 액션",
         nameEn: "Blitzcrank Plush Hat",
         price: "59,000원",
-        image: makePlaceholder(52, "Blitzcrank Plush Hat"),
+        image: "images/products/0019.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1218,7 +1156,7 @@
         nameKo: "멍멍양 킨드레드 모자",
         nameEn: "Woof & Lamb Kindred Plush Hat",
         price: "59,000원",
-        image: makePlaceholder(53, "Woof & Lamb Kindred Plush Hat"),
+        image: "images/products/0018.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1227,7 +1165,7 @@
         nameKo: "펭구 깃털기사 털방울 모자",
         nameEn: "Featherknight Plush Hat with Poms Poms",
         price: "29,000원",
-        image: makePlaceholder(54, "Featherknight Plush Hat with Poms Poms"),
+        image: "images/products/0012.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1236,7 +1174,7 @@
         nameKo: "배불뚝이 모자",
         nameEn: "Choncc Plush Hat",
         price: "29,000원",
-        image: makePlaceholder(55, "Choncc Plush Hat"),
+        image: "images/products/0010.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1245,7 +1183,7 @@
         nameKo: "TFT 펭구 깃털기사 모자",
         nameEn: "Featherknight Plush Hat",
         price: "29,000원",
-        image: makePlaceholder(56, "Featherknight Plush Hat"),
+        image: "images/products/0011.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1254,7 +1192,7 @@
         nameKo: "냐옹카이 야옹이 모자",
         nameEn: "Meowkai Catling Hat",
         price: "32,000원",
-        image: makePlaceholder(57, "Meowkai Catling Hat"),
+        image: "images/products/0015.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1263,7 +1201,7 @@
         nameKo: "TFT 신비의 숲 XL 마우스패드",
         nameEn: "TFT Enchanted Wilds XL Mousepad",
         price: "29,000원",
-        image: makePlaceholder(58, "TFT Enchanted Wilds XL Mousepad"),
+        image: "images/products/0005.jpg",
         badge: "팝업 선출시",
         description: "팝업 선출시 표기 필요"
       },
@@ -1272,7 +1210,7 @@
         nameKo: "와일드리프트 수정장미 레오나 XL 마우스패드",
         nameEn: "Wild Rift Crystal Rose Leona XL Mousepad",
         price: "29,000원",
-        image: makePlaceholder(59, "Wild Rift Crystal Rose Leona XL Mousepad"),
+        image: "images/products/0006.jpg",
         badge: "팝업 선출시",
         description: "팝업 선출시 표기 필요"
       },
@@ -1281,7 +1219,7 @@
         nameKo: "펭구 깃털기사 머리띠",
         nameEn: "TFT Featherknight Hairband",
         price: "29,000원",
-        image: makePlaceholder(60, "TFT Featherknight Hairband"),
+        image: "images/products/0013.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1290,7 +1228,7 @@
         nameKo: "배불뚝이 목 쿠션",
         nameEn: "Choncc Neck Pillow",
         price: "32,000원",
-        image: makePlaceholder(61, "Choncc Neck Pillow"),
+        image: "images/products/0056.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1299,7 +1237,7 @@
         nameKo: "배불뚝이 인형 열쇠고리",
         nameEn: "Choncc Plush Key Chain",
         price: "15,000원",
-        image: makePlaceholder(62, "Choncc Plush Key Chain"),
+        image: "images/products/0055.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1308,7 +1246,7 @@
         nameKo: "배불뚝이 쿠션",
         nameEn: "Choncc Cushion",
         price: "35,000원",
-        image: makePlaceholder(63, "Choncc Cushion"),
+        image: "images/products/0057.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1317,7 +1255,7 @@
         nameKo: "티버 인형 슬링백",
         nameEn: "Tibbers Plush Bag",
         price: "23,000원",
-        image: makePlaceholder(64, "Tibbers Plush Bag"),
+        image: "images/products/0058.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1326,7 +1264,7 @@
         nameKo: "TFT 펭구 깃털기사 에어백 머리띠",
         nameEn: "TFT Pengu Pop Plush Hairband",
         price: "29,000원",
-        image: makePlaceholder(65, "TFT Pengu Pop Plush Hairband"),
+        image: "images/products/0014.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1335,7 +1273,7 @@
         nameKo: "TFT 어푸푸 배불뚝이 여름 반다나",
         nameEn: "Teamfight Tactics Choncc Summer Bandana",
         price: "45,000원",
-        image: makePlaceholder(66, "Teamfight Tactics Choncc Summer Bandana"),
+        image: "images/products/0001.jpg",
         badge: "팝업 선출시",
         description: "팝업 선출시 표기 필요"
       },
@@ -1344,7 +1282,7 @@
         nameKo: "TFT 어푸푸 배불뚝이 여름 타월",
         nameEn: "Teamfight Tactics Choncc Summer Towel",
         price: "25,000원",
-        image: makePlaceholder(67, "Teamfight Tactics Choncc Summer Towel"),
+        image: "images/products/0002.jpg",
         badge: "팝업 선출시",
         description: "팝업 선출시 표기 필요"
       },
@@ -1353,7 +1291,7 @@
         nameKo: "요들: 나르 노트",
         nameEn: "Yordle Notebook : Gnar",
         price: "4,000원",
-        image: makePlaceholder(68, "Yordle Notebook : Gnar"),
+        image: "images/products/0079.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1362,7 +1300,7 @@
         nameKo: "요들: 티모 노트",
         nameEn: "Yordle Notebook : Teemo",
         price: "4,000원",
-        image: makePlaceholder(69, "Yordle Notebook : Teemo"),
+        image: "images/products/0080.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1371,7 +1309,7 @@
         nameKo: "요들: 아무무 노트",
         nameEn: "Yordle Notebook : Amumu",
         price: "4,000원",
-        image: makePlaceholder(70, "Yordle Notebook : Amumu"),
+        image: "images/products/0081.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1380,7 +1318,7 @@
         nameKo: "요들: 피즈 노트",
         nameEn: "Yordle Notebook : Fizz",
         price: "4,000원",
-        image: makePlaceholder(71, "Yordle Notebook : Fizz"),
+        image: "images/products/0082.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1389,7 +1327,7 @@
         nameKo: "모나미 리그 오브 레전드 펜피규어 세트_펭구",
         nameEn: "League of Legends 153 Neo Pen Figure Set_Pengu",
         price: "45,000원",
-        image: makePlaceholder(72, "League of Legends 153 Neo Pen Figure Set_Pengu"),
+        image: "images/products/0088.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1398,7 +1336,7 @@
         nameKo: "모나미 리그 오브 레전드 펜피규어 세트_티모",
         nameEn: "League of Legends 153 Neo Pen Figure Set_Teemo",
         price: "45,000원",
-        image: makePlaceholder(73, "League of Legends 153 Neo Pen Figure Set_Teemo"),
+        image: "images/products/0089.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1407,7 +1345,7 @@
         nameKo: "모나미 153 전략적 팀 전투_펭구",
         nameEn: "League of Legends BP153 5-pen Set_Pengu",
         price: "13,000원",
-        image: makePlaceholder(74, "League of Legends BP153 5-pen Set_Pengu"),
+        image: "images/products/0086.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1416,7 +1354,7 @@
         nameKo: "모나미 153 리그 오브 레전드_티모",
         nameEn: "League of Legends BP153 5-pen Set_Teemo",
         price: "13,000원",
-        image: makePlaceholder(75, "League of Legends BP153 5-pen Set_Teemo"),
+        image: "images/products/0087.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1425,7 +1363,7 @@
         nameKo: "모나미 전략적 팀 전투 플립 3_펭구",
         nameEn: "League of Legends Flip 3_Pengu",
         price: "8,000원",
-        image: makePlaceholder(76, "League of Legends Flip 3_Pengu"),
+        image: "images/products/0083.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1434,7 +1372,7 @@
         nameKo: "모나미 리그 오브 레전드 플립 3_티모",
         nameEn: "League of Legends Flip 3_Teemo",
         price: "8,000원",
-        image: makePlaceholder(77, "League of Legends Flip 3_Teemo"),
+        image: "images/products/0084.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1443,7 +1381,7 @@
         nameKo: "모나미 리그 오브 레전드 플립 3_포로",
         nameEn: "League of Legends Flip 3_Poro",
         price: "8,000원",
-        image: makePlaceholder(78, "League of Legends Flip 3_Poro"),
+        image: "images/products/0085.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1452,7 +1390,7 @@
         nameKo: "리그 오브 레전드 롤 키캡 랜덤 피규어",
         nameEn: "Soap Studio: LOL Keycap Fidgets Blindbox - single",
         price: "14,900원",
-        image: makePlaceholder(79, "Soap Studio: LOL Keycap Fidgets Blindbox - single"),
+        image: "images/products/0076.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1461,7 +1399,7 @@
         nameKo: "리그 오브 레전드 치비 챔피언 무작위 (더벤티)",
         nameEn: "The Venti x LoL Champions Metal Keyring Collection (blind box)",
         price: "4,900원",
-        image: makePlaceholder(80, "The Venti x LoL Champions Metal Keyring Collection (blind box)"),
+        image: "images/products/0075.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1470,7 +1408,7 @@
         nameKo: "마스터 셰프 탐 켄치 반팔티 - One Size",
         nameEn: "Master Chef Tahm Kench Tee",
         price: "39,000원",
-        image: makePlaceholder(81, "Master Chef Tahm Kench Tee"),
+        image: "images/products/0021.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1479,7 +1417,7 @@
         nameKo: "TFT 꼬마 전설이 스쿼드 반팔티 - One Size",
         nameEn: "Teamfight Tactics Little Legends Squad Tee - One Size",
         price: "42,000원",
-        image: makePlaceholder(82, "Teamfight Tactics Little Legends Squad Tee - One Size"),
+        image: "images/products/0020.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1488,7 +1426,7 @@
         nameKo: "가렌 데마시아아아! 반팔티 - One Size",
         nameEn: "Garen For Demacia Tee - One Size",
         price: "42,000원",
-        image: makePlaceholder(83, "Garen For Demacia Tee - One Size"),
+        image: "images/products/0022.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1497,7 +1435,7 @@
         nameKo: "TFT 배불뚝이 어푸푸 마을 해변 셔츠",
         nameEn: "Teamfight Tactics Choncc Summer Beach Shirt",
         price: "99,000원",
-        image: makePlaceholder(84, "Teamfight Tactics Choncc Summer Beach Shirt"),
+        image: "images/products/0004.jpg",
         badge: "팝업 선출시",
         description: "팝업 선출시 표기 필요"
       },
@@ -1506,7 +1444,7 @@
         nameKo: "TFT 배불뚝이 어푸푸 마을 반팔티",
         nameEn: "Teamfight Tactics Splash Town Choncc Tie Dye Tee",
         price: "45,000원",
-        image: makePlaceholder(85, "Teamfight Tactics Splash Town Choncc Tie Dye Tee"),
+        image: "images/products/0003.jpg",
         badge: "팝업 선출시",
         description: "팝업 선출시 표기 필요"
       },
@@ -1515,7 +1453,7 @@
         nameKo: "DIM MAK x TFT 전략적 팀 전투 - 스크래치 새틴 스타터 자켓",
         nameEn: "Dim Mak x Teamfight Tacticscratch Satin Starter Jacket",
         price: "167,300원",
-        image: makePlaceholder(86, "Dim Mak x Teamfight Tacticscratch Satin Starter Jacket"),
+        image: "images/products/0023.jpg",
         badge: "30% 할인",
         description: "239,000원 → 167,300원 30% 할인 표기 필요"
       },
@@ -1524,7 +1462,7 @@
         nameKo: "사랑의 추적자 유미 화이트 후드티",
         nameEn: "Heartseeker Yuumi White Hoodie",
         price: "75,000원",
-        image: makePlaceholder(87, "Heartseeker Yuumi White Hoodie"),
+        image: "images/products/0026.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1533,7 +1471,7 @@
         nameKo: "TFT 별빛 펭구 스웨터",
         nameEn: "Teamfight Tactics Pengu in the Stars Sweater",
         price: "89,000원",
-        image: makePlaceholder(88, "Teamfight Tactics Pengu in the Stars Sweater"),
+        image: "images/products/0024.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
@@ -1542,51 +1480,11 @@
         nameKo: "TFT 꼬마 전설이 홀리데이 스웨터",
         nameEn: "Teamfight Tactics Little Legends Holiday Sweater",
         price: "89,000원",
-        image: makePlaceholder(89, "Teamfight Tactics Little Legends Holiday Sweater"),
+        image: "images/products/0025.jpg",
         badge: "",
         description: "상품 이미지를 크게 확인할 수 있습니다."
       },
     ];
-
-
-    const catalogSections = [
-      {
-        title: "신상 컬렉션",
-        ids: [66, 67, 85, 84, 58, 59, 8, 9, 49, 55, 56, 54, 60, 65, 57, 50, 51, 53, 52, 82, 81, 83, 86, 88, 89, 87, 10, 3, 6, 4, 5, 1, 2, 7, 12, 13, 11, 14, 15, 17, 16]
-      },
-      {
-        title: "프리미엄 스태츄",
-        ids: [25, 27, 30, 20, 26, 18, 19, 21, 22, 28, 29, 23, 24, 62, 61, 63, 64, 40, 48, 32, 45, 41, 44, 43, 42, 31, 38, 37, 36, 39, 33, 34, 35, 80, 79, 46, 47, 68, 69, 70, 71, 76, 77, 78, 74, 75, 72, 73]
-      }
-    ];
-
-    const displayOrder = catalogSections.flatMap(section => section.ids);
-    const displayOrderIndex = new Map(
-      displayOrder.map((id, index) => [id, index])
-    );
-
-    function sortByDisplayOrder(list) {
-      return [...list].sort((a, b) =>
-        (displayOrderIndex.get(a.id) ?? 9999) -
-        (displayOrderIndex.get(b.id) ?? 9999)
-      );
-    }
-
-    function productCardHtml(item) {
-      return `
-        <article class="product-card" tabindex="0" data-id="${item.id}" aria-label="${item.nameKo} 상세 보기">
-          <div class="image-wrap">
-            <img src="${item.image}" alt="${item.nameKo}" loading="lazy" draggable="false" onerror="this.src=makePlaceholder(${item.id}, 'NO IMAGE')">
-            ${item.badge ? `<span class="badge">${item.badge}</span>` : ""}
-          </div>
-          <div class="info">
-            <h2 class="name-ko">${item.nameKo}</h2>
-            <p class="name-en">${item.nameEn}</p>
-            <p class="price">${item.price}</p>
-          </div>
-        </article>
-      `;
-    }
 
     const catalog = document.getElementById("catalog");
     const searchInput = document.getElementById("searchInput");
@@ -1610,26 +1508,19 @@
         return;
       }
 
-      const visibleIds = new Set(list.map(item => item.id));
-      const productMap = new Map(products.map(item => [item.id, item]));
-
-      catalog.innerHTML = catalogSections.map(section => {
-        const sectionItems = section.ids
-          .filter(id => visibleIds.has(id))
-          .map(id => productMap.get(id))
-          .filter(Boolean);
-
-        if (!sectionItems.length) return "";
-
-        return `
-          <section class="catalog-section">
-            <h2 class="section-title">${section.title}</h2>
-            <div class="section-grid">
-              ${sectionItems.map(productCardHtml).join("")}
-            </div>
-          </section>
-        `;
-      }).join("");
+      catalog.innerHTML = list.map(item => `
+        <article class="product-card" tabindex="0" data-id="${item.id}" aria-label="${item.nameKo} 상세 보기">
+          <div class="image-wrap">
+            <img src="${item.image}" alt="${item.nameKo}" loading="lazy" draggable="false" onerror="this.src=makePlaceholder(${item.id}, 'NO IMAGE')">
+            ${item.badge ? `<span class="badge">${item.badge}</span>` : ""}
+          </div>
+          <div class="info">
+            <h2 class="name-ko">${item.nameKo}</h2>
+            <p class="name-en">${item.nameEn}</p>
+            <p class="price">${item.price}</p>
+          </div>
+        </article>
+      `).join("");
 
       document.querySelectorAll(".product-card").forEach(card => {
         card.addEventListener("click", () => openProduct(Number(card.dataset.id)));
@@ -1668,7 +1559,7 @@
         item.nameKo.toLowerCase().includes(keyword) ||
         item.nameEn.toLowerCase().includes(keyword)
       );
-      render(sortByDisplayOrder(filtered));
+      render(filtered);
     });
 
     closeModal.addEventListener("click", hideModal);
@@ -1682,7 +1573,7 @@
     /*
       로고 사용 예시:
       document.getElementById("logoArea").innerHTML =
-        '<img src="./images/logo.png" alt="WILD FANFEST 로고">';
+        '<img src="images/logo.png" alt="WILD FANFEST 로고">';
     */
 
 
@@ -1698,7 +1589,7 @@
       }
     });
 
-    render(sortByDisplayOrder(products));
+    render(products);
   </script>
 </body>
 </html>
