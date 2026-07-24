@@ -2261,9 +2261,6 @@ body {
       render(products);
     });
 
-    loadAdminData();
-
-
     // 현장 태블릿 비치용: 이미지 길게 누르기 및 드래그 방지
     document.addEventListener("contextmenu", e => e.preventDefault());
     document.addEventListener("dragstart", e => e.preventDefault());
@@ -2276,9 +2273,6 @@ body {
       }
     });
 
-    render(products);
-
-
 function updateOfflineStatus() {
   const banner = document.getElementById("offlineStatus");
   if (!banner) return;
@@ -2287,6 +2281,27 @@ function updateOfflineStatus() {
 window.addEventListener("online", updateOfflineStatus);
 window.addEventListener("offline", updateOfflineStatus);
 updateOfflineStatus();
+
+function startCatalog() {
+  try {
+    loadAdminData();
+    applyDesign(designData);
+    render(products);
+    updateOfflineStatus();
+  } catch (error) {
+    console.error("카탈로그 초기화 오류:", error);
+    const catalogArea = document.getElementById("catalog");
+    if (catalogArea) {
+      catalogArea.innerHTML = '<div class="empty">상품 목록을 불러오는 중 오류가 발생했습니다.</div>';
+    }
+  }
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", startCatalog, { once: true });
+} else {
+  startCatalog();
+}
 
 </script>
 </body>
