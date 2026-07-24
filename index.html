@@ -855,9 +855,8 @@
       </div>
 
       <div class="tools">
-        <input id="searchInput" class="search" type="search" placeholder="상품명 검색" autocomplete="off" enterkeyhint="search" aria-label="상품명 검색">
-        <div class="count"><span id="visibleCount">0</span> / <span id="totalCount">0</span> items</div>
-      </div>
+  <div class="count"><span id="visibleCount">0</span> / <span id="totalCount">0</span> items</div>
+</div>
     </header>
 
     <div class="admin-bar" id="adminBar">
@@ -1812,7 +1811,7 @@
     }
 
     const catalog = document.getElementById("catalog");
-    const searchInput = document.getElementById("searchInput");
+
     const visibleCount = document.getElementById("visibleCount");
     const totalCount = document.getElementById("totalCount");
 
@@ -1896,14 +1895,7 @@
       document.body.classList.remove("modal-open");
     }
 
-    searchInput.addEventListener("input", e => {
-      const keyword = e.target.value.trim().toLowerCase();
-      const filtered = products.filter(item =>
-        item.nameKo.toLowerCase().includes(keyword) ||
-        item.nameEn.toLowerCase().includes(keyword)
-      );
-      render(sortByDisplayOrder(filtered));
-    });
+
 
     closeModal.addEventListener("click", hideModal);
     modal.addEventListener("click", e => {
@@ -1937,13 +1929,9 @@
     const editSave = document.getElementById("editSave");
     const editCancel = document.getElementById("editCancel");
 
-    function currentFilteredProducts() {
-      const keyword = searchInput.value.trim().toLowerCase();
-      return sortByDisplayOrder(products.filter(item =>
-        item.nameKo.toLowerCase().includes(keyword) ||
-        item.nameEn.toLowerCase().includes(keyword)
-      ));
-    }
+function currentFilteredProducts() {
+  return sortByDisplayOrder(products);
+}
 
     function rerenderCatalog() {
       render(currentFilteredProducts());
