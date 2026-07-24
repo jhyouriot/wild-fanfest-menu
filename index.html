@@ -1118,11 +1118,12 @@ body {
     function applyDesign(design) {
       document.documentElement.style.setProperty("--custom-background", `url("${design.background}")`);
       const logoArea = document.getElementById("logoArea");
-      logoArea.innerHTML = `<img src="${design.logo}" alt="WILD FANFEST 로고" onerror="this.style.display='none';this.parentElement.classList.add('logo-fallback')">`;
+      if (logoArea) {
+        logoArea.innerHTML = `<img src="${design.logo}" alt="WILD FANFEST 로고" onerror="this.style.display='none';this.parentElement.classList.add('logo-fallback')">`;
+      }
     }
 
     let designData = loadDesignData();
-    applyDesign(designData);
 
 
 /*
