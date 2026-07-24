@@ -851,6 +851,38 @@
       },
     ];
 
+
+    const CATALOG_SECTIONS = [
+      { title: "신상 컬렉션", ids: [66, 67, 85, 84, 58, 59, 8, 9, 49, 55, 56, 54, 60, 65, 57, 50, 51, 53, 52, 82, 81, 83, 86, 88, 89, 87, 10, 3, 6, 4, 5, 1, 2, 7, 12, 13, 11, 14, 15, 17, 16] },
+      { title: "프리미엄 스태츄", ids: [25, 27, 30, 20, 26, 18, 19, 21, 22, 28, 29, 23, 24, 62, 61, 63, 64, 40, 48, 32, 45, 41, 44, 43, 42, 31, 38, 37, 36, 39, 33, 34, 35, 80, 79, 46, 47, 68, 69, 70, 71, 76, 77, 78, 74, 75, 72, 73] }
+    ];
+
+    const DISPLAY_ORDER = CATALOG_SECTIONS.flatMap(section => section.ids);
+    const DISPLAY_ORDER_INDEX = new Map(DISPLAY_ORDER.map((id, index) => [id, index]));
+
+    function sortByDisplayOrder(list) {
+      return [...list].sort((a, b) =>
+        (DISPLAY_ORDER_INDEX.get(a.id) ?? 9999) -
+        (DISPLAY_ORDER_INDEX.get(b.id) ?? 9999)
+      );
+    }
+
+    function productCardTemplate(item) {
+      return `
+        <article class="product-card ${item.soldOut ? 'sold-out' : ''}" tabindex="0" data-id="${item.id}" aria-label="${item.nameKo} 상세 보기">
+          <div class="image-wrap">
+            <img src="${item.image}" alt="${item.nameKo}" loading="lazy" draggable="false" onerror="this.src=makePlaceholder(${item.id}, 'NO IMAGE')">
+            ${item.badge ? `<span class="badge">${item.badge}</span>` : ""}
+          </div>
+          <div class="info">
+            <h2 class="name-ko">${item.nameKo}</h2>
+            <p class="name-en">${item.nameEn}</p>
+            <p class="price">${item.price}</p>
+          </div>
+        </article>
+      `;
+    }
+
     const catalog = document.getElementById("catalog");
     const searchInput = document.getElementById("searchInput");
     const visibleCount = document.getElementById("visibleCount");
@@ -873,19 +905,29 @@
         return;
       }
 
-      catalog.innerHTML = list.map(item => `
-        <article class="product-card ${item.soldOut ? 'sold-out' : ''}" tabindex="0" data-id="${item.id}" aria-label="${item.nameKo} 상세 보기">
-          <div class="image-wrap">
-            <img src="${item.image}" alt="${item.nameKo}" loading="lazy" draggable="false" onerror="this.src=makePlaceholder(${item.id}, 'NO IMAGE')">
-            ${item.badge ? `<span class="badge">${item.badge}</span>` : ""}
-          </div>
-          <div class="info">
-            <h2 class="name-ko">${item.nameKo}</h2>
-            <p class="name-en">${item.nameEn}</p>
-            <p class="price">${item.price}</p>
-          </div>
-        </article>
-      `).join("");
+      const visibleIds = new Set(list.map(item => item.id));
+      const productMap = new Map(products.map(item => [item.id, item]));
+
+      catalog.innerHTML = CATALOG_SECTIONS.map(section => {
+        const sectionItems = section.ids
+          .filter(id => visibleIds.has(id))
+          .map(id => productMap.get(id))
+          .filter(Boolean);
+
+        if (!sectionItems.length) return "";
+
+        return `
+          <section class="catalog-section">
+            <div class="section-title-wrap">
+              <h2 class="section-title">${section.title}</h2>
+              <span class="section-count">${sectionItems.length} ITEMS</span>
+            </div>
+            <div class="section-grid">
+              ${sectionItems.map(productCardTemplate).join("")}
+            </div>
+          </section>
+        `;
+      }).join("");
 
       document.querySelectorAll(".product-card").forEach(card => {
         card.addEventListener("click", () => openProduct(Number(card.dataset.id)));
@@ -1027,7 +1069,7 @@
     }
 
     function renderAdminList() {
-      adminList.innerHTML = products.map(item => `
+      adminList.innerHTML = sortByDisplayOrder(products).map(item => `
         <div class="admin-item" data-admin-id="${item.id}">
           <img class="admin-thumb" src="${item.image}" alt="${item.nameKo}">
           <input class="admin-field admin-name-ko" value="${escapeHtml(item.nameKo)}" aria-label="${item.id}번 한글 상품명">
@@ -1133,3 +1175,27 @@
     });
 
     render(products);
+
+
+// 오프라인 실행을 위한 Service Worker 등록
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", async () => {
+    try {
+      await navigator.serviceWorker.register("./service-worker.js");
+      console.log("오프라인 모드가 준비되었습니다.");
+    } catch (error) {
+      console.warn("Service Worker 등록 실패:", error);
+    }
+  });
+}
+
+
+
+function updateOfflineStatus() {
+  const banner = document.getElementById("offlineStatus");
+  if (!banner) return;
+  banner.classList.toggle("show", !navigator.onLine);
+}
+window.addEventListener("online", updateOfflineStatus);
+window.addEventListener("offline", updateOfflineStatus);
+updateOfflineStatus();
