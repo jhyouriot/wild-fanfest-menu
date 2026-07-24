@@ -680,6 +680,163 @@
       }
     }
 
+  
+    /* 관리자 모드 */
+    .admin-entry{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      z-index:900;
+      width:48px;
+      height:48px;
+      border:0;
+      border-radius:50%;
+      background:rgba(35,62,65,.92);
+      color:#fff;
+      font-size:20px;
+      cursor:pointer;
+      box-shadow:0 8px 24px rgba(0,0,0,.22);
+    }
+
+    .admin-bar{
+      display:none;
+      position:sticky;
+      top:8px;
+      z-index:80;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin:0 0 16px;
+      padding:12px 14px;
+      border-radius:14px;
+      background:#203f43;
+      color:#fff;
+      box-shadow:0 8px 24px rgba(0,0,0,.18);
+    }
+
+    body.admin-mode .admin-bar{display:flex}
+
+    .admin-bar strong{font-size:15px}
+    .admin-bar-actions{display:flex;gap:8px}
+
+    .admin-btn{
+      min-height:38px;
+      padding:7px 13px;
+      border:1px solid rgba(255,255,255,.4);
+      border-radius:9px;
+      background:#fff;
+      color:#203f43;
+      font-weight:900;
+      cursor:pointer;
+    }
+
+    .admin-btn.danger{
+      background:#7b2525;
+      color:#fff;
+      border-color:#9d4a4a;
+    }
+
+    .sold-out-overlay{
+      position:absolute;
+      inset:0;
+      z-index:4;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(20,20,20,.18);
+      color:#fff;
+      font-size:clamp(24px,3vw,42px);
+      font-weight:950;
+      letter-spacing:.04em;
+      text-shadow:0 2px 12px rgba(0,0,0,.65);
+      pointer-events:none;
+    }
+
+    .product-card.sold-out .image-wrap img{
+      filter:grayscale(1) blur(3px);
+      transform:scale(1.03);
+    }
+
+    .admin-controls{
+      display:none;
+      gap:7px;
+      flex-wrap:wrap;
+      padding:0 12px 12px;
+    }
+
+    body.admin-mode .admin-controls{display:flex}
+
+    .admin-controls button{
+      flex:1 1 44%;
+      min-height:36px;
+      padding:6px 8px;
+      border:0;
+      border-radius:8px;
+      font-size:12px;
+      font-weight:900;
+      cursor:pointer;
+    }
+
+    .btn-soldout{background:#263238;color:#fff}
+    .btn-restore{background:#dcefd6;color:#1f4b2b}
+    .btn-edit{background:#e6edf8;color:#243d68}
+
+    .admin-modal{
+      position:fixed;
+      inset:0;
+      z-index:2000;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      background:rgba(8,18,19,.76);
+      backdrop-filter:blur(5px);
+    }
+
+    .admin-modal.open{display:flex}
+
+    .admin-dialog{
+      width:min(520px,100%);
+      max-height:92vh;
+      overflow:auto;
+      padding:24px;
+      border-radius:20px;
+      background:#fff;
+      box-shadow:0 24px 80px rgba(0,0,0,.36);
+    }
+
+    .admin-dialog h2{margin:0 0 18px;font-size:22px}
+
+    .admin-field{
+      display:block;
+      margin-bottom:13px;
+      font-size:13px;
+      font-weight:900;
+      color:#34464b;
+    }
+
+    .admin-field input{
+      width:100%;
+      min-height:46px;
+      margin-top:6px;
+      padding:0 12px;
+      border:1px solid #cad4d5;
+      border-radius:9px;
+      font-size:15px;
+    }
+
+    .admin-dialog-actions{
+      display:flex;
+      justify-content:flex-end;
+      gap:8px;
+      margin-top:18px;
+    }
+
+    @media(max-width:599px){
+      .admin-entry{right:12px;bottom:12px}
+      .admin-bar{position:relative;top:auto}
+    }
+
   </style>
 </head>
 <body>
@@ -702,6 +859,14 @@
         <div class="count"><span id="visibleCount">0</span> / <span id="totalCount">0</span> items</div>
       </div>
     </header>
+
+    <div class="admin-bar" id="adminBar">
+      <strong>관리자 모드</strong>
+      <div class="admin-bar-actions">
+        <button class="admin-btn" id="resetAdminData" type="button">전체 수정 초기화</button>
+        <button class="admin-btn danger" id="adminLogout" type="button">관리자 종료</button>
+      </div>
+    </div>
 
     <section id="catalog" class="catalog" aria-live="polite"></section>
 
@@ -1578,18 +1743,60 @@
 
     function productCardHtml(item) {
       return `
-        <article class="product-card" tabindex="0" data-id="${item.id}" aria-label="${item.nameKo} 상세 보기">
+        <article class="product-card ${item.soldOut ? "sold-out" : ""}" tabindex="0" data-id="${item.id}" aria-label="${item.nameKo} 상세 보기">
           <div class="image-wrap">
             <img src="${item.image}" alt="${item.nameKo}" loading="lazy" draggable="false" onerror="this.src=makePlaceholder(${item.id}, 'NO IMAGE')">
             ${item.badge ? `<span class="badge">${item.badge}</span>` : ""}
+            ${item.soldOut ? `<div class="sold-out-overlay">Sold out</div>` : ""}
           </div>
           <div class="info">
             <h2 class="name-ko">${item.nameKo}</h2>
             <p class="name-en">${item.nameEn}</p>
             <p class="price">${item.price}</p>
           </div>
+          <div class="admin-controls">
+            ${item.soldOut
+              ? `<button class="btn-restore" type="button" data-action="restore" data-id="${item.id}">품절 해제</button>`
+              : `<button class="btn-soldout" type="button" data-action="soldout" data-id="${item.id}">품절</button>`
+            }
+            <button class="btn-edit" type="button" data-action="edit" data-id="${item.id}">상품명·가격 수정</button>
+          </div>
         </article>
       `;
+    }
+
+
+    const ADMIN_PASSWORD = "2026";
+    const ADMIN_STORAGE_KEY = "wildFanfestAdminDataV1";
+    let isAdminMode = false;
+
+    function loadAdminData() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(ADMIN_STORAGE_KEY) || "{}");
+        products.forEach(item => {
+          const data = saved[item.id];
+          if (!data) return;
+          if (typeof data.nameKo === "string") item.nameKo = data.nameKo;
+          if (typeof data.nameEn === "string") item.nameEn = data.nameEn;
+          if (typeof data.price === "string") item.price = data.price;
+          item.soldOut = Boolean(data.soldOut);
+        });
+      } catch (error) {
+        console.warn("관리자 데이터를 불러오지 못했습니다.", error);
+      }
+    }
+
+    function saveAdminData() {
+      const data = {};
+      products.forEach(item => {
+        data[item.id] = {
+          nameKo: item.nameKo,
+          nameEn: item.nameEn,
+          price: item.price,
+          soldOut: Boolean(item.soldOut)
+        };
+      });
+      localStorage.setItem(ADMIN_STORAGE_KEY, JSON.stringify(data));
     }
 
     const catalog = document.getElementById("catalog");
@@ -1644,6 +1851,17 @@
           }
         });
       });
+
+      document.querySelectorAll(".admin-controls button").forEach(button => {
+        button.addEventListener("click", event => {
+          event.stopPropagation();
+          const id = Number(button.dataset.id);
+          const action = button.dataset.action;
+          if (action === "soldout") setSoldOut(id, true);
+          if (action === "restore") setSoldOut(id, false);
+          if (action === "edit") openEditModal(id);
+        });
+      });
     }
 
     function openProduct(id) {
@@ -1690,6 +1908,130 @@
     */
 
 
+
+    const adminEntry = document.getElementById("adminEntry");
+    const adminLoginModal = document.getElementById("adminLoginModal");
+    const adminPassword = document.getElementById("adminPassword");
+    const adminLoginSubmit = document.getElementById("adminLoginSubmit");
+    const adminLoginCancel = document.getElementById("adminLoginCancel");
+    const adminLogout = document.getElementById("adminLogout");
+    const resetAdminData = document.getElementById("resetAdminData");
+
+    const productEditModal = document.getElementById("productEditModal");
+    const editProductId = document.getElementById("editProductId");
+    const editNameKo = document.getElementById("editNameKo");
+    const editNameEn = document.getElementById("editNameEn");
+    const editPrice = document.getElementById("editPrice");
+    const editSave = document.getElementById("editSave");
+    const editCancel = document.getElementById("editCancel");
+
+    function currentFilteredProducts() {
+      const keyword = searchInput.value.trim().toLowerCase();
+      return sortByDisplayOrder(products.filter(item =>
+        item.nameKo.toLowerCase().includes(keyword) ||
+        item.nameEn.toLowerCase().includes(keyword)
+      ));
+    }
+
+    function rerenderCatalog() {
+      render(currentFilteredProducts());
+    }
+
+    function enterAdminMode() {
+      isAdminMode = true;
+      document.body.classList.add("admin-mode");
+      adminLoginModal.classList.remove("open");
+      adminPassword.value = "";
+      rerenderCatalog();
+    }
+
+    function exitAdminMode() {
+      isAdminMode = false;
+      document.body.classList.remove("admin-mode");
+      rerenderCatalog();
+    }
+
+    function setSoldOut(id, soldOut) {
+      const item = products.find(product => product.id === id);
+      if (!item) return;
+      item.soldOut = soldOut;
+      saveAdminData();
+      rerenderCatalog();
+    }
+
+    function openEditModal(id) {
+      const item = products.find(product => product.id === id);
+      if (!item) return;
+      editProductId.value = String(id);
+      editNameKo.value = item.nameKo;
+      editNameEn.value = item.nameEn;
+      editPrice.value = item.price;
+      productEditModal.classList.add("open");
+      editNameKo.focus();
+    }
+
+    function closeEditModal() {
+      productEditModal.classList.remove("open");
+    }
+
+    adminEntry.addEventListener("click", () => {
+      if (isAdminMode) {
+        exitAdminMode();
+        return;
+      }
+      adminLoginModal.classList.add("open");
+      setTimeout(() => adminPassword.focus(), 50);
+    });
+
+    adminLoginSubmit.addEventListener("click", () => {
+      if (adminPassword.value === ADMIN_PASSWORD) {
+        enterAdminMode();
+      } else {
+        alert("비밀번호가 올바르지 않습니다.");
+        adminPassword.select();
+      }
+    });
+
+    adminPassword.addEventListener("keydown", event => {
+      if (event.key === "Enter") adminLoginSubmit.click();
+    });
+
+    adminLoginCancel.addEventListener("click", () => {
+      adminLoginModal.classList.remove("open");
+      adminPassword.value = "";
+    });
+
+    adminLogout.addEventListener("click", exitAdminMode);
+
+    editSave.addEventListener("click", () => {
+      const id = Number(editProductId.value);
+      const item = products.find(product => product.id === id);
+      if (!item) return;
+      item.nameKo = editNameKo.value.trim() || item.nameKo;
+      item.nameEn = editNameEn.value.trim() || item.nameEn;
+      item.price = editPrice.value.trim() || item.price;
+      saveAdminData();
+      closeEditModal();
+      rerenderCatalog();
+    });
+
+    editCancel.addEventListener("click", closeEditModal);
+
+    resetAdminData.addEventListener("click", () => {
+      if (!confirm("저장된 상품명, 가격, 품절 상태를 모두 초기화할까요?")) return;
+      localStorage.removeItem(ADMIN_STORAGE_KEY);
+      location.reload();
+    });
+
+    adminLoginModal.addEventListener("click", event => {
+      if (event.target === adminLoginModal) adminLoginModal.classList.remove("open");
+    });
+
+    productEditModal.addEventListener("click", event => {
+      if (event.target === productEditModal) closeEditModal();
+    });
+
+
     // 현장 태블릿 비치용: 이미지 길게 누르기 및 드래그 방지
     document.addEventListener("contextmenu", e => e.preventDefault());
     document.addEventListener("dragstart", e => e.preventDefault());
@@ -1702,7 +2044,48 @@
       }
     });
 
+    loadAdminData();
     render(sortByDisplayOrder(products));
   </script>
+
+  <button class="admin-entry" id="adminEntry" type="button" aria-label="관리자 모드">⚙</button>
+
+  <div class="admin-modal" id="adminLoginModal">
+    <div class="admin-dialog">
+      <h2>관리자 로그인</h2>
+      <label class="admin-field">
+        비밀번호
+        <input id="adminPassword" type="password" inputmode="numeric" autocomplete="current-password" placeholder="비밀번호 입력">
+      </label>
+      <div class="admin-dialog-actions">
+        <button class="admin-btn" id="adminLoginCancel" type="button">취소</button>
+        <button class="admin-btn" id="adminLoginSubmit" type="button">확인</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-modal" id="productEditModal">
+    <div class="admin-dialog">
+      <h2>상품 정보 수정</h2>
+      <input id="editProductId" type="hidden">
+      <label class="admin-field">
+        상품명
+        <input id="editNameKo" type="text">
+      </label>
+      <label class="admin-field">
+        영문 상품명
+        <input id="editNameEn" type="text">
+      </label>
+      <label class="admin-field">
+        가격
+        <input id="editPrice" type="text" placeholder="예: 45,000원">
+      </label>
+      <div class="admin-dialog-actions">
+        <button class="admin-btn" id="editCancel" type="button">취소</button>
+        <button class="admin-btn" id="editSave" type="button">저장</button>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
